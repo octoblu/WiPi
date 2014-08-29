@@ -1,0 +1,3 @@
+if [ ! -f /etc/wpa-configured ]; then
+  DAEMON_CONF="/etc/hostapd/hostapd.conf"
+fi

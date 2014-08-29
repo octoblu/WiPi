@@ -1,0 +1,6 @@
+if [ -f /etc/wpa-configured ]; then
+  ENABLED=0
+else
+  ENABLED=1
+  CONFIG_DIR=/etc/dnsmasq.d,.dpkg-dist,.dpkg-old,.dpkg-new
+fi

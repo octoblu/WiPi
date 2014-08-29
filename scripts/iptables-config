@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ ! -f /etc/wpa-configured ]; then
+  iptables -t mangle -N internet
+  iptables -t mangle -A PREROUTING -i wlan0 -p tcp -m tcp --dport 80 -j internet
+  iptables -t mangle -A internet -j MARK --set-mark 99
+  iptables -t nat -A PREROUTING -i wlan0 -p tcp -m mark --mark 99 -m tcp --dport 80 -j DNAT --to-destination 192.168.100.1
+fi

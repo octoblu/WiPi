@@ -1,0 +1,14 @@
+#!/bin/bash
+touch /etc/wpa-configured
+cat >/etc/network/interfaces <<EOD
+auto lo
+iface lo inet loopback
+iface eth0 inet dhcp
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid $1
+wpa-psk $2
+iface default inet dhcp
+EOD
+
+sleep 5 && /sbin/shutdown -r now &

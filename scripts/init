@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [ "$(id -u)" != "0" ]; then
+  echo "Sorry, you are not root."
+  exit 1
+fi
+
+rm /etc/wpa-configured
+
+apt-get update
+apt-get install dnsmasq hostapd python-pip
+
+cd /home/pi
+git clone git@github.com:octoblu/WiPi.git
+cd /home/pi/WiPi
+
+cp -r config/etc/network/interfaces /etc/network/interfaces
+
+cp -r config/crontab/root /var/spool/cron/crontabs
+chmod 600 /var/spool/cron/crontabs/root
+chown root:crontab /var/spool/cron/crontabs/root
+
+# overwrite hostapd with custom rtl8188cus
+# if you are using nl80211 you don't need this
+gunzip hostapd-dist/hostapd-rtl8188cus.gz
+mv /usr/sbin/hostapd /usr/sbin/hostapd.orig
+mv hostapd-dist/hostapd-rtl8188cus /usr/sbin/hostapd
+chmod +x /usr/sbin/hostapd
+chown root:root /usr/sbin/hostapd
+
+cp config/etc/dnsmasq.conf /etc/dnsmasq.conf
+cp config/etc/default/hostapd /etc/default/hostapd
+cp config/etc/default/dnsmasq /etc/default/dnsmasq
+cp config/etc/hostapd/hostapd.conf /etc/hostapd/hostapd.conf
+
+update-rc.d dnsmasq defaults
+update-rc.d hostapd defaults
+
+pip install bottle
+
+/sbin/shutdown -r now
