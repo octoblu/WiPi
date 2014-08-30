@@ -25,9 +25,8 @@ chown root:crontab /var/spool/cron/crontabs/root
 
 # overwrite hostapd with custom rtl8188cus
 # if you are using nl80211 you don't need this
-gunzip hostapd-dist/hostapd-rtl8188cus.gz
 mv /usr/sbin/hostapd /usr/sbin/hostapd.orig
-mv hostapd-dist/hostapd-rtl8188cus /usr/sbin/hostapd
+gunzip -c hostapd-dist/hostapd-rtl8188cus.gz > /usr/sbin/hostapd
 chmod +x /usr/sbin/hostapd
 chown root:root /usr/sbin/hostapd
 
