@@ -5,13 +5,16 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
+if [ ! -d /home/pi/WiPi ]; then
+  echo "cd /home/pi && git clone https://github.com/octoblu/WiPi"
+  exit 1
+fi
+
 rm /etc/wpa-configured
 
 apt-get update
 apt-get install dnsmasq hostapd python-pip
 
-cd /home/pi
-git clone git@github.com:octoblu/WiPi.git
 cd /home/pi/WiPi
 
 cp -r config/etc/network/interfaces /etc/network/interfaces
