@@ -15,7 +15,7 @@ def do_setup():
     ssid = request.forms.get('ssid')
     password = request.forms.get('password')
     subprocess.call(['/home/pi/WiPi/scripts/config_wpa', ssid, password]) 
-    return "<p>Restarting</p>"
+    return "<h1>Restarting</h1>"
 
 @route('/<path:re:.*>')
 def catchall(path=None):
