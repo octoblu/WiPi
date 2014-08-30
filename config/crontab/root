@@ -1,2 +1,2 @@
-@reboot /home/pi/setup/iptables-config
-@reboot cd /home/pi/portal; python server.py &
+@reboot /home/pi/WiPi/scripts/iptables-config
+@reboot cd /home/pi/WiPi/portal; python server.py &
