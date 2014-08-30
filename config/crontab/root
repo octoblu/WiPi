@@ -1,2 +1,3 @@
 @reboot /home/pi/WiPi/scripts/iptables-config
 @reboot cd /home/pi/WiPi/portal; python server.py &
+@reboot sleep 30 && /etc/init.d/hostapd restart
