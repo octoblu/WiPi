@@ -14,7 +14,7 @@ def server_static(filename):
 def do_setup():
     ssid = request.forms.get('ssid')
     password = request.forms.get('password')
-    subprocess.call(['./config_wpa', ssid, password]) 
+    subprocess.call(['/home/pi/WiPi/scripts/config_wpa', ssid, password]) 
     return "<p>Restarting</p>"
 
 @route('/<path:re:.*>')
