@@ -7,6 +7,8 @@
 <link href="static/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
+    <center><img src="static/octoblu.png"/></center>
+    <br />
     <div class="member-login">
         <form class="login" action="/setup" method="post" >
   
@@ -15,7 +17,7 @@
             <input type="text" name="ssid" placeholder="SSID" required/>
           </div>
           <div class="input">
-            <input type="text" name="password" placeholder="WPA Password" />
+            <input type="password" name="password" placeholder="WPA Password" />
           </div>
           <div class="buttons">
             <input class="bluebutton" type="submit" value="Configure" />

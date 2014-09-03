@@ -19,7 +19,17 @@ cd /home/pi/WiPi
 
 cp -r config/etc/network/interfaces /etc/network/interfaces
 
-cp -r config/crontab/root /var/spool/cron/crontabs
+# cp -r config/crontab/root /var/spool/cron/crontabs
+# save original crontab and append wipi commands to the end
+if [ ! -d /var/spool/cron/crontabsbackup ]; then
+  cp /var/spool/cron/crontabs /var/spool/cron/crontabsbackup  
+else
+  cp /var/spool/cron/crontabsbackup /var/spool/cron/crontabs 
+fi
+echo '@reboot /home/pi/WiPi/scripts/iptables-config' >> /var/spool/cron/crontabs
+echo '@reboot cd /home/pi/WiPi/portal; python server.py &' >> /var/spool/cron/crontabs
+echo '@reboot sleep 30 && /etc/init.d/hostapd restart' >> /var/spool/cron/crontabs
+
 chmod 600 /var/spool/cron/crontabs/root
 chown root:crontab /var/spool/cron/crontabs/root
 

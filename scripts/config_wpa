@@ -11,4 +11,5 @@ wpa-psk $2
 iface default inet dhcp
 EOD
 
-sleep 5 && /sbin/shutdown -r now &
+# sleep 5 && /sbin/shutdown -r now &
+sleep 5 && ifup wlan0 &
