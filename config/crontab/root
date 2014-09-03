@@ -1,3 +1,5 @@
-@reboot /home/pi/WiPi/scripts/iptables-config
-@reboot cd /home/pi/WiPi/portal; python server.py &
-@reboot sleep 30 && /etc/init.d/hostapd restart
+# Start WiPi crontab
+@reboot if [ ! -f /etc/wpa-configured ]; then /home/pi/WiPi/scripts/iptables-config; fi
+@reboot if [ ! -f /etc/wpa-configured ]; then cd /home/pi/WiPi/portal; python server.py &; fi
+@reboot if [ ! -f /etc/wpa-configured ]; then sleep 30 && /etc/init.d/hostapd restart; fi
+# End WiPi crontab
