@@ -3,3 +3,4 @@
 rm /etc/wpa-configured
 cd /home/pi/WiPi
 cp -r config/etc/network/interfaces /etc/network/interfaces
+/sbin/shutdown -r now
